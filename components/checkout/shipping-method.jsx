@@ -13,7 +13,7 @@ const ShippingMethod = ({ handleOption, option, chosen }) => {
       tabIndex="0"
     >
       <p>{option.name}</p>
-      <p>{formatPrice(option.amount, "EUR")}</p>
+      <p>{formatPrice(option.amount, "USD")}</p>
     </div>
   );
 };

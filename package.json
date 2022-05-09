@@ -10,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@lob/react-address-autocomplete": "^1.1.10",
     "@medusajs/medusa-js": "^1.0.3",
     "@stripe/react-stripe-js": "^1.4.1",
     "@stripe/stripe-js": "^1.15.1",

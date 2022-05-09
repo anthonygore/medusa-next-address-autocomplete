@@ -8,7 +8,7 @@ export const defaultStoreContext = {
   },
   order: {},
   products: [],
-  currencyCode: "eur",
+  currencyCode: "usd",
   addVariantToCart: async () => {},
   createCart: async () => {},
   removeLineItem: async () => {},

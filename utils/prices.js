@@ -34,6 +34,8 @@ export function getVariantPrice(cart, variant) {
 
 export function formatPrices(cart, variant, digits = 2) {
   if (!cart || !cart.region || !variant) return;
+  console.log(cart.region)
+  console.log(variant)
   if (!variant.prices) return `15.00 EUR`;
   return formatMoneyAmount(
     {

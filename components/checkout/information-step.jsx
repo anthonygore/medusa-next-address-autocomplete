@@ -6,6 +6,7 @@ import styles from "../../styles/information-step.module.css";
 import InputField from "./input-field";
 import SelectField from "./select-field";
 import StoreContext from "../../context/store-context";
+import AddressField from "./address-field";
 
 const InformationStep = ({ handleSubmit, savedValues, isProcessing }) => {
   const { cart } = useContext(StoreContext);
@@ -26,10 +27,9 @@ const InformationStep = ({ handleSubmit, savedValues, isProcessing }) => {
     country_code: Yup.string().required("Required"),
     city: Yup.string().required("Required"),
     postal_code: Yup.string().required("Required"),
-    province: Yup.string().nullable(true),
+    province: Yup.string().required("Required"),
     phone: Yup.string().required("Required"),
   });
-
   return (
     <div style={{ flexGrow: "1" }}>
       <h2>Address</h2>
@@ -40,11 +40,12 @@ const InformationStep = ({ handleSubmit, savedValues, isProcessing }) => {
           email: savedValues.email || "",
           address_1: savedValues.address_1 || "",
           address_2: savedValues.address_2 || "",
-          country_code: savedValues.country_code || 
+          country_code: savedValues.country_code ||
             cart?.region?.countries?.[0].iso_2 ||
             "",
           postal_code: savedValues.postal_code || "",
           city: savedValues.city || "",
+          province: savedValues.province || "",
           phone: savedValues.phone || "",
         }}
         validationSchema={Schema}
@@ -85,26 +86,33 @@ const InformationStep = ({ handleSubmit, savedValues, isProcessing }) => {
                   errorMsg={errors.email}
                   type="email"
                 />
-                <InputField
+                <AddressField
                   id="address_1"
-                  placeholder="Address 1"
                   error={errors.address_1 && touched.address_1}
                   errorMsg={errors.address_1}
-                  type="text"
                 />
                 <InputField
                   id="address_2"
-                  placeholder="Address 2 (Optional)"
+                  placeholder="Apartment, Suite"
                   error={errors.address_2 && touched.address_2}
                   errorMsg={errors.address_2}
                   type="text"
                 />
-                <SelectField
-                  id="country_code"
-                  options={cart.region?.countries}
-                  error={errors.country_code && touched.country_code}
-                  errorMsg={errors.country_code}
-                />
+                <div className={styles.sharedrow}>
+                  <SelectField
+                    id="country_code"
+                    options={cart.region?.countries}
+                    error={errors.country_code && touched.country_code}
+                    errorMsg={errors.country_code}
+                  />
+                  <InputField
+                    id="province"
+                    placeholder="State"
+                    error={errors.province && touched.province}
+                    errorMsg={errors.province}
+                    type="text"
+                  />
+                </div>
                 <div className={styles.sharedrow}>
                   <InputField
                     id="city"
