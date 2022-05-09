@@ -2,14 +2,13 @@ import React from "react";
 import styles from "../../styles/input-field.module.css";
 import { MdError } from "react-icons/md";
 import { Autocomplete } from "@lob/react-address-autocomplete";
-const apiKey = 'test_pub_9a5604627e4b263421579519c905160';
+const apiKey = process.env.NEXT_PUBLIC_LOB_PUBLISHABLE_KEY;
 import addressStyle from '../../styles/address.module.css'
 import { useFormikContext } from "formik";
 
 const AddressField = ({ id, error, errorMsg }) => {
   const formikProps = useFormikContext()
   const handleSelect = ({ value }) => {
-    console.log(value)
     formikProps.setFieldValue('postal_code', value.zip_code)
     formikProps.setFieldValue('city', value.city)
     formikProps.setFieldValue('province', value.state.toUpperCase())
