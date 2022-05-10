@@ -7,13 +7,13 @@ import addressStyle from '../../styles/address.module.css'
 import { useFormikContext } from "formik";
 
 const AddressField = ({ id, error, errorMsg }) => {
-  const formikProps = useFormikContext()
+  const { setFieldValue } = useFormikContext()
   const handleSelect = ({ value }) => {
-    formikProps.setFieldValue('postal_code', value.zip_code)
-    formikProps.setFieldValue('city', value.city)
-    formikProps.setFieldValue('province', value.state.toUpperCase())
-    formikProps.setFieldValue('address_1', value.primary_line)
-    formikProps.setFieldValue('country_code', 'US')
+    setFieldValue('postal_code', value.zip_code)
+    setFieldValue('city', value.city)
+    setFieldValue('province', value.state.toUpperCase())
+    setFieldValue('address_1', value.primary_line)
+    setFieldValue('country_code', 'US')
   }
   return (
     <div className={styles.container}>
